@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "concurrently \"tsc -w\" \"nodemon public/js/server/server.js\""
+    "start": "concurrently \"tsc -w\" \"nodemon public/js/server.js\""
   },
   "author": "Al_Kon",
   "license": "ISC",

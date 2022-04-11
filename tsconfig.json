@@ -9,5 +9,5 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"],
-  "exclude": ["src/server/types/*.ts"]
+  "exclude": ["src/types/*.ts"]
 }
