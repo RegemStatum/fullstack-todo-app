@@ -2,7 +2,7 @@
 
 ## Created by Al_Kon
 
-You should add nodemon.json file with the following structure:
+You should add nodemon.json file in the project root with the following structure:
 {
 "restartable": "rs",
 "ignore": [".git", "node_modules/**/node_modules"],
