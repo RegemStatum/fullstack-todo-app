@@ -9,7 +9,8 @@ interface ITodo {
 
 enum AppReducerActions {
   SET_TODOS = "SET_TODOS",
-  ADD_TODO = "ADD_TODO",
+  SET_IS_UPDATE_FORM = "SET_IS_UPDATE_FORM",
+  SET_UPDATE_ID = "SET_UPDATE_ID",
 }
 
 interface SetTodosAction {
@@ -17,15 +18,22 @@ interface SetTodosAction {
   payload: ITodo[];
 }
 
-interface AddTodoAction {
-  type: AppReducerActions.ADD_TODO;
-  payload: Pick<ITodo, "name" | "description">;
+interface SetIsUpdateFormAction {
+  type: AppReducerActions.SET_IS_UPDATE_FORM;
+  payload: boolean;
 }
 
-type AppActions = SetTodosAction | AddTodoAction;
+interface SetUpdateId {
+  type: AppReducerActions.SET_UPDATE_ID;
+  payload: string;
+}
+
+type AppActions = SetTodosAction | SetIsUpdateFormAction | SetUpdateId;
 
 interface AppReducerState {
   todos: ITodo[];
+  isUpdateForm: boolean;
+  updateId: string;
 }
 
 export { AppReducerActions };

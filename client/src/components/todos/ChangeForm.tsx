@@ -8,7 +8,8 @@ const ChangeForm: FC = () => {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const descInputRef = useRef<HTMLInputElement>(null);
   const statusInputRef = useRef<HTMLInputElement>(null);
-  const { addTodo } = useAppContext();
+  const { addTodo, isUpdateForm, getUpdateTodoInfo, updateTodo } =
+    useAppContext();
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -25,7 +26,9 @@ const ChangeForm: FC = () => {
       ) {
         throw new Error("Invalid input");
       }
-      addTodo(name, description, status);
+      !isUpdateForm
+        ? addTodo(name, description, status)
+        : updateTodo(name, description, status);
     } catch (e) {
       console.log(e);
     }
@@ -35,9 +38,12 @@ const ChangeForm: FC = () => {
     statusInputRef.current!.checked = false;
   };
 
+  const updateInfo = isUpdateForm ? <p>{getUpdateTodoInfo()?.name}</p> : null;
+
   return (
     <Wrapper onSubmit={handleSubmit}>
       <div>
+        {updateInfo}
         <div>
           <label htmlFor="name">Name</label>
           <input
@@ -69,7 +75,7 @@ const ChangeForm: FC = () => {
         </div>
       </div>
       <Button view="primary" onClick={null}>
-        Add
+        {!isUpdateForm ? "Add" : "Update"}
       </Button>
     </Wrapper>
   );

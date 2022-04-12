@@ -13,11 +13,15 @@ const SingleTodo: FC<SingleTodoProps> = ({
   status,
   _id: id,
 }) => {
-  const { deleteTodo } = useAppContext();
+  const { deleteTodo, openUpdateForm, setUpdateId } = useAppContext();
 
   const handleDelete = () => {
-    console.log("delete: " + id);
     deleteTodo(id);
+  };
+
+  const handleUpdate = () => {
+    setUpdateId(id);
+    openUpdateForm();
   };
 
   return (
@@ -32,7 +36,7 @@ const SingleTodo: FC<SingleTodoProps> = ({
         )}
       </div>
       <div>
-        <Button view="update" onClick={null}>
+        <Button view="update" onClick={handleUpdate}>
           Update
         </Button>
         <Button view="delete" onClick={handleDelete}>
@@ -59,6 +63,10 @@ const Wrapper = styled.div`
 
   p {
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  }
+
+  & > div:first-child button {
+    cursor: default;
   }
 
   & > div:last-child {
